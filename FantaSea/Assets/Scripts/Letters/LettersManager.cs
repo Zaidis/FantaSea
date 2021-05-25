@@ -14,8 +14,24 @@ public class LettersManager : MonoBehaviour
         for(int i = 0; i < letters.Count; i++) {
             if(letters[i].id == id) {
                 letters[i].GetComponent<TextMeshProUGUI>().color = Color.yellow;
+                if (CheckIfDone()) {
+                    print("Ah ya did it didnt ya"); //get all the letters
+                }
                 return;
             }
         }
+    }
+
+    /// <summary>
+    /// Checks to see if all the letters are obtained.
+    /// </summary>
+    public bool CheckIfDone() {
+        print("Checking if done");
+        for(int i = 0; i < letters.Count; i++) {
+            if(letters[i].GetComponent<TextMeshProUGUI>().color != Color.yellow) {
+                return false;
+            }
+        }
+        return true;
     }
 }
