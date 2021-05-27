@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Pedistal : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Pedistal : MonoBehaviour
     public LettersManager manager;
     public Transform placement;
     public List<GameObject> milks = new List<GameObject>();
+    
     private void Start() {
         manager = FindObjectOfType<LettersManager>();
     }
@@ -30,6 +32,7 @@ public class Pedistal : MonoBehaviour
         foreach(GameObject milk in milks) {
             milk.SetActive(true);
         }
+        this.GetComponent<AudioSource>().Play();
     }
 
 }

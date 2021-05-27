@@ -6,7 +6,7 @@ public class LettersManager : MonoBehaviour
 {
 
     public List<Letter> letters = new List<Letter>();
-
+    public TextMeshPro text;
     /// <summary>
     /// Called when you touch a letter.
     /// </summary>
@@ -16,6 +16,7 @@ public class LettersManager : MonoBehaviour
                 letters[i].GetComponent<TextMeshProUGUI>().color = Color.yellow;
                 if (CheckIfDone()) {
                     print("Ah ya did it didnt ya"); //get all the letters
+                    text.gameObject.SetActive(true);
                 }
                 return;
             }
