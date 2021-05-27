@@ -27,10 +27,11 @@ public class PickUp : MonoBehaviour
                         obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         obj.GetComponent<Rigidbody>().useGravity = false;
                         obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                        obj.GetComponent<Collider>().enabled = false;
                         obj.transform.parent = handLocation;
                         obj.GetComponent<Rigidbody>().drag = 100;
                         obj.transform.localPosition = Vector3.zero;
-
+                        
                         isHolding = true;
                     }
                 }
@@ -40,6 +41,7 @@ public class PickUp : MonoBehaviour
                 obj.GetComponent<Rigidbody>().useGravity = true;
                 obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 obj.GetComponent<Rigidbody>().drag = 0;
+                obj.GetComponent<Collider>().enabled = true;
                 obj.transform.parent = null;
                 objects.Clear();
                 isHolding = false;
@@ -50,6 +52,7 @@ public class PickUp : MonoBehaviour
                 GameObject obj = objects[0].gameObject;
                 obj.GetComponent<Rigidbody>().useGravity = true;
                 obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                obj.GetComponent<Collider>().enabled = true;
                 obj.GetComponent<Rigidbody>().drag = 0;
                 obj.GetComponent<Rigidbody>().AddForce(handLocation.transform.forward * force, ForceMode.Impulse);
 

@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class Pedistal : MonoBehaviour
 {
 
     public LettersManager manager;
     public Transform placement;
     public List<GameObject> milks = new List<GameObject>();
-    
+    public Image closedUI;
+    public TextMeshProUGUI credits;
     private void Start() {
         manager = FindObjectOfType<LettersManager>();
     }
@@ -33,6 +34,26 @@ public class Pedistal : MonoBehaviour
             milk.SetActive(true);
         }
         this.GetComponent<AudioSource>().Play();
+        Invoke("StartClose", 50);
+    }
+
+    public void StartClose() {
+        StartCoroutine(CloseScreen());
+    }
+
+    IEnumerator CloseScreen() {
+        float currentAlpha = closedUI.color.a;
+
+        for(float i = 0; i < 1; i += Time.deltaTime) {
+            Color newAlpha = new Color(0, 0, 0, Mathf.Lerp(currentAlpha, 1, i));
+            closedUI.color = newAlpha;
+            yield return null;
+        }
+        Invoke("TurnOnText", 1.75f);
+    }
+
+    public void TurnOnText() {
+        credits.gameObject.SetActive(true);
     }
 
 }
