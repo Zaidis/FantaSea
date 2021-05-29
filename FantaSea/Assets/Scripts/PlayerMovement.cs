@@ -38,4 +38,30 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
         }
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.gameObject.CompareTag("NPC")) {
+            //if you bumped into an NPC, interact
+            collision.collider.gameObject.GetComponent<NPC>().StartInteraction();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision) {
+        if (collision.collider.gameObject.CompareTag("NPC")) {
+            //if you bumped into an NPC, interact
+            collision.collider.gameObject.GetComponent<NPC>().StopInteraction();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("NPC")) {
+            Debug.Log("I hit an NPC");
+            other.gameObject.GetComponent<NPC>().StartInteraction();
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("NPC")) {
+            other.gameObject.GetComponent<NPC>().StopInteraction();
+        }
+    }
 }
