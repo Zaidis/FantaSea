@@ -8,9 +8,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI textUI;
     public string name; //name of NPC;
     public TextMeshProUGUI nameText;
-    public float timer;
-    public float maxTimer = 3;
-    public bool isTalking; //are you waiting for the next line
+    public TextMeshProUGUI interactText;
     public bool isInteracting; //is a player nearby to talk to
     private void Start() {
         sentences = new Queue<string>();
@@ -26,11 +24,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Update() {
         if (isInteracting) {
-            if (!isTalking) {
-                timer -= Time.deltaTime;
-                if (timer <= 0) {
-                    DisplaySentence();
-                }
+            if (Input.GetKeyDown(KeyCode.E)) {
+                DisplaySentence();
             }
         }
     }
@@ -41,16 +36,20 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
+        if(sentences.Count < 1) {
+            interactText.text = "Press E to close!";
+        } else {
+            interactText.text = "Press E to progress!";
+        }
         nameText.text = name.ToString();
         StopAllCoroutines();
         StartCoroutine(TypeWords(sentence));
-        isTalking = true;
     }
 
     public void EndDialogue() {
         textUI.text = "";
         nameText.text = "";
-        isTalking = false;
+        interactText.text = "";
         isInteracting = false;
     }
     IEnumerator TypeWords(string line) {
@@ -71,8 +70,6 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         textUI.maxVisibleCharacters = totalVisibleCharacters;
-        timer = maxTimer;
-        isTalking = false;
     }
 
 }
