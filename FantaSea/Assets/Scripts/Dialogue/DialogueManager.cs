@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI interactText;
     public bool isInteracting; //is a player nearby to talk to
+    public bool typing;
+    private int totalVisibleCharacters;
     private void Start() {
         sentences = new Queue<string>();
     }
@@ -25,7 +27,13 @@ public class DialogueManager : MonoBehaviour
     private void Update() {
         if (isInteracting) {
             if (Input.GetKeyDown(KeyCode.E)) {
-                DisplaySentence();
+                if(!typing)
+                    DisplaySentence();
+                else {
+                    StopAllCoroutines();
+                    textUI.maxVisibleCharacters = totalVisibleCharacters;
+                    typing = false;
+                }
             }
         }
     }
@@ -51,14 +59,15 @@ public class DialogueManager : MonoBehaviour
         nameText.text = "";
         interactText.text = "";
         isInteracting = false;
+        typing = false;
     }
     IEnumerator TypeWords(string line) {
-
+        typing = true;
         textUI.text = line;
         textUI.ForceMeshUpdate();
-        int totalVisibleCharacters = textUI.textInfo.characterCount;
+        totalVisibleCharacters = textUI.textInfo.characterCount;
         int counter = 0;
-
+        
         while (true) {
             int visibleCount = counter % (totalVisibleCharacters + 1);
             textUI.maxVisibleCharacters = visibleCount;
@@ -70,6 +79,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         textUI.maxVisibleCharacters = totalVisibleCharacters;
+        typing = false;
     }
 
 }

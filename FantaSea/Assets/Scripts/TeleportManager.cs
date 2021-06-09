@@ -6,6 +6,7 @@ public class TeleportManager : MonoBehaviour
 {
     public Transform golfIsland;
     public Transform councilIsland;
+    public Transform houseIsland;
     public CharacterController cc;
 
     private void Start() {
@@ -20,6 +21,11 @@ public class TeleportManager : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.I)) {
             cc.enabled = false;
             transform.position = new Vector3(councilIsland.position.x, councilIsland.position.y, councilIsland.position.z);
+            print("I teleported");
+            cc.enabled = true;
+        } else if (Input.GetKeyDown(KeyCode.P)) {
+            cc.enabled = false;
+            transform.position = new Vector3(houseIsland.position.x, houseIsland.position.y, houseIsland.position.z);
             print("I teleported");
             cc.enabled = true;
         }
