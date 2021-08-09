@@ -37,13 +37,15 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Fanta
   m_Shader: {fileID: -6465566751694194690, guid: 117722cd3e58a4246b062cfd20c571d1, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
+  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _REFRACTION_THIN
+    _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2225
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
+    RenderType: Transparent
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -102,11 +104,31 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 6486fedc590f3a84fba5508bb5d8f03d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_58a9a133ba88460b9a14c5d16b85add9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bee2925678630aa468fcf1e80fcbd174, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_99f1308d1d9f4d0d8d5e71045d6315e9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6486fedc590f3a84fba5508bb5d8f03d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_a306811f244f4c93b8f3a591e580b4e2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 356e3120a469ec64c8c29ff3e31b94c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_f941293a1c30431b91f2646988ebd392_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bb53cdc1d49422f4394d88eed3599823, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_305aada4fe8a497ab6678cd1148c7e0a_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6486fedc590f3a84fba5508bb5d8f03d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_3cf8db330fb143e18690390912fd44be_Texture_1:
@@ -117,11 +139,27 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6486fedc590f3a84fba5508bb5d8f03d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8509c1fc6469496dbf59f4f69a04d911_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bb53cdc1d49422f4394d88eed3599823, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_86cdd3562e0b44a0a8b2006b67cb0267_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bee2925678630aa468fcf1e80fcbd174, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_9041826171a448599751606820da7108_Texture_1:
         m_Texture: {fileID: 2800000, guid: 2e09b950aac68c44dae3bc42db8e56ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a7404cae896847a1bbe923394691c8f2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: bb53cdc1d49422f4394d88eed3599823, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_a76ed9495e16458bab124c8b269db188_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 2e09b950aac68c44dae3bc42db8e56ec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_ece2f0d733cf4e8ab0a4422bccee689d_Texture_1:
         m_Texture: {fileID: 2800000, guid: 2e09b950aac68c44dae3bc42db8e56ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -153,6 +191,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _waveDisp:
+        m_Texture: {fileID: 2800000, guid: 356e3120a469ec64c8c29ff3e31b94c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -165,9 +207,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - water_disp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_5dc7d383b60f4a22b233f09c9ab15a93: 0.00625
-    - Vector1_e13867051ec4417f9244f8b1072b95b5: 0.025
+    - Vector1_0b203d678b554f1fab5b1a5a44428a4d: 0.5
+    - Vector1_2da010a1e84440a99cb4bb27a12335fe: -0.01
+    - Vector1_5dc7d383b60f4a22b233f09c9ab15a93: 0.005
+    - Vector1_61b4f6096e8847aea8468405d24c8274: 0.1
+    - Vector1_bd2af59cb8d74ba195edf17954e5c7f9: 1
+    - Vector1_c45c187a679246d7a0ffbbc58f4d4ca8: 1
+    - Vector1_e13867051ec4417f9244f8b1072b95b5: 4
+    - Vector1_f26383ab36b949e5b72b416770d4cb30: 0.1
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -178,7 +230,7 @@ Material:
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
-    - _AlphaDstBlend: 0
+    - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
@@ -199,7 +251,7 @@ Material:
     - _DisplacementMode: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
@@ -237,8 +289,8 @@ Material:
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
-    - _RefractionModel: 0
-    - _RenderQueueType: 1
+    - _RefractionModel: 3
+    - _RenderQueueType: 4
     - _RequireSplitLighting: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -248,10 +300,10 @@ Material:
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
     - _StencilRef: 0
-    - _StencilRefDepth: 8
+    - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 4
-    - _StencilRefGBuffer: 10
-    - _StencilRefMV: 40
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskDistortionVec: 4
@@ -259,10 +311,18 @@ Material:
     - _StencilWriteMaskMV: 40
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
-    - _SurfaceType: 0
+    - _SurfaceType: 1
+    - _TessellationBackFaceCullEpsilon: -0.25
+    - _TessellationFactor: 8
+    - _TessellationFactorMaxDistance: 50
+    - _TessellationFactorMinDistance: 20
+    - _TessellationFactorTriangleSize: 100
+    - _TessellationMode: 1
+    - _TessellationShapeFactor: 0.75
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
+    - _ThicknessMultiplier: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -270,19 +330,24 @@ Material:
     - _TransparentDepthPrepassEnable: 0
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
-    - _TransparentZWrite: 0
+    - _TransparentZWrite: 1
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
+    - _waveFrequency: 0.05
+    - _waveSize: 0.25
+    - _waveSpeed: 0.1
     m_Colors:
-    - Vector2_f0ab34702f1c46889ce540b09f661833: {r: 8, g: 8, b: 8, a: 0}
-    - Vector2_f353f1f87e5c4b8cae65759d746bb759: {r: 32, g: 32, b: 32, a: 0}
+    - Color_2ffcad93be8a4d00a4a4a6e6a9c19b55: {r: 0.6698113, g: 0.44656384, b: 0, a: 0.7490196}
+    - Color_f51c253eaa6845f9adf3b669ac98b418: {r: 1, g: 0.572549, b: 0, a: 0.5019608}
+    - Vector2_f0ab34702f1c46889ce540b09f661833: {r: 1, g: 1, b: 1, a: 1}
+    - Vector2_f353f1f87e5c4b8cae65759d746bb759: {r: 2, g: 2, b: 2, a: 2}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -299,4 +364,5 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
+    - _waveTiling: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []
