@@ -97,8 +97,14 @@ public class Portal : MonoBehaviour {
         return GeometryUtility.TestPlanesAABB(planes, rend.bounds);
     }
     public void Render() {
-        if (!IsVisible(linkedPortal.screenRenderer, playerCamera))
+        if (!IsVisible(linkedPortal.screenRenderer, playerCamera)) {
+            Texture2D defaultTexture = new Texture2D(1, 1);
+            defaultTexture.SetPixel(0, 0, Color.black);
+            defaultTexture.Apply();
+            linkedPortal.screenRenderer.material.SetTexture("_MainTex", defaultTexture);
             return;
+        }
+        linkedPortal.screenRenderer.material.SetTexture("_MainTex", texture);
         //print("Hi i am working");
 
         this.screenRenderer.enabled = false;
