@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour {
 
+
+    /*
+     * INPORTANT DETAILS
+     * 1. Main camera "Near" clipping planes should be set to 0.03, not 0.3
+     * 2. The screen should be a cube, not a plane
+     * 3. The screens should not have colliders. The collider should be on the parent, and should be a trigger. 
+     * 4. 
+     */
+
     public Portal linkedPortal;
     public MeshRenderer screenRenderer; // <-----
 
@@ -25,13 +34,13 @@ public class Portal : MonoBehaviour {
     private void LateUpdate() {
         for(int i = 0; i < potentialTeleporters.Count; i++) {
             Teleporter obj = potentialTeleporters[i];
-
+            var m = linkedPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * obj.transform.localToWorldMatrix;
             Vector3 offset = obj.transform.position - transform.position;
             int oldPortalSide = System.Math.Sign(Vector3.Dot(obj.previousOffset, transform.forward));
             int newPortalSide = System.Math.Sign(Vector3.Dot(offset, transform.forward));
 
             if(newPortalSide != oldPortalSide) {
-                var m = linkedPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * obj.transform.localToWorldMatrix;
+                
                 obj.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
 
                 linkedPortal.EnteredPortal(obj);
@@ -65,8 +74,10 @@ public class Portal : MonoBehaviour {
 
         Transform screenT = screenRenderer.transform;
         bool camFacingSameDirAsPortal = Vector3.Dot(transform.forward, transform.position - viewPoint) > 0;
+        //screenT.localScale = new Vector3(screenT.localScale.x, screenT.localScale.y, screenThickness);
         screenT.localScale = new Vector3(screenT.localScale.x, screenT.localScale.y, screenThickness);
         screenT.localPosition = Vector3.forward * screenThickness * ((camFacingSameDirAsPortal) ? 0.5f : -0.5f);
+        //screenT.localPosition = Vector3.forward * screenThickness;
         //return screenThickness;
     }
     private void CreateViewTexture() {
