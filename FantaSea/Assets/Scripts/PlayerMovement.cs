@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Teleporter
 {
     [SerializeField] private float speed; //player speed
     [SerializeField] private float gravity = -9.81f; //player gravity amount
@@ -37,6 +37,16 @@ public class PlayerMovement : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
+    }
+
+    public override void Teleport(Transform oldPortal, Transform newPortal, Vector3 pos, Quaternion rot) {
+        transform.position = pos;
+        transform.rotation = rot;
+        Vector3 newRotation = rot.eulerAngles;
+
+
+        velocity = newPortal.TransformVector(oldPortal.InverseTransformVector(velocity));
+        Physics.SyncTransforms();
     }
 
     private void OnCollisionEnter(Collision collision) {
