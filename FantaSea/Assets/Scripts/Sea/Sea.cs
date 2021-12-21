@@ -8,7 +8,7 @@ public class Sea : MonoBehaviour
 {
 
     private MeshFilter mf;
-
+    public Boat_Base boat;
     private void Awake()
     {
         mf = GetComponent<MeshFilter>();
@@ -22,5 +22,6 @@ public class Sea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.SetPositionAndRotation(new Vector3(boat.transform.position.x, 0, boat.transform.position.z), this.transform.rotation);
     }
 }
