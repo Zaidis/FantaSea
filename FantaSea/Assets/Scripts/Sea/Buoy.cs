@@ -12,11 +12,9 @@ public class Buoy : MonoBehaviour
     public float force;
     public float drag, angularDrag, underwaterDrag, underwaterAngularDrag;
     public float waveHeight;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+
+
 
     // Update is called once per frame
     void Update()

@@ -22,9 +22,9 @@ public class Boat_Base : MonoBehaviour
             b.rb = rb;
         }
     }
-    void Start()
-    {
-        
+
+    private void Start() {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class Boat_Base : MonoBehaviour
         if (steeringInput != 0)
         {
             //engine.steeringAngle = -steeringInput * 45;
-            Buoys[0].steeringAngle = steeringInput * maxSteerAngle ;
+            Buoys[0].steeringAngle = steeringInput * maxSteerAngle;
             Buoys[1].steeringAngle = steeringInput * maxSteerAngle;
         }
 
@@ -48,12 +48,12 @@ public class Boat_Base : MonoBehaviour
         rb.AddForce(transform.forward * throttleInput * speed, ForceMode.Acceleration);
         if (steeringInput < 0)
         {
-            rb.AddForceAtPosition(Buoys[0].transform.forward * (throttleInput * speed)/2, Buoys[0].transform.position, ForceMode.Acceleration);
+            rb.AddForceAtPosition(Buoys[1].transform.forward * (throttleInput * speed)/2, Buoys[1].transform.position, ForceMode.Acceleration);
 
         }
         else if (steeringInput > 0)
         {
-            rb.AddForceAtPosition(Buoys[1].transform.forward * (throttleInput * speed) / 2, Buoys[1].transform.position, ForceMode.Acceleration);
+            rb.AddForceAtPosition(Buoys[0].transform.forward * (throttleInput * speed) / 2, Buoys[0].transform.position, ForceMode.Acceleration);
         }
 
     }

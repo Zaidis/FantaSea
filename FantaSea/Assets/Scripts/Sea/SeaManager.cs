@@ -36,11 +36,7 @@ public class SeaManager : MonoBehaviour
         seaMat = sea.GetComponent<Renderer>().sharedMaterial;
         displacementMap = (Texture2D)seaMat.GetTexture("_waveDisp");
     }
-    // Update is called once per frame
-    void Update()
-    {
-     
-    }
+   
 
     public float getWaveHeight(Vector3 position)
     {

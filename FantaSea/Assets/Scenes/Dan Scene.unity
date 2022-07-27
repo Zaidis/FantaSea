@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 67.44831, g: 38.751404, b: 43.400574, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -888,7 +888,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439709766}
-  m_LocalRotation: {x: 0.1911311, y: -0.17502625, z: 0.03465868, w: 0.96521163}
+  m_LocalRotation: {x: 0.19113107, y: -0.17502627, z: 0.034658685, w: 0.96521163}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2243,7 +2243,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895453393}
-  m_LocalRotation: {x: 0.2260662, y: -0.17365178, z: 0.04099363, w: 0.9576318}
+  m_LocalRotation: {x: 0.2260662, y: -0.17365175, z: 0.04099361, w: 0.9576318}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2689,7 +2689,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184756341}
-  m_LocalRotation: {x: 0.20860995, y: -0.1743687, z: 0.03782822, w: 0.9615854}
+  m_LocalRotation: {x: 0.20860995, y: -0.1743687, z: 0.03782821, w: 0.9615854}
   m_LocalPosition: {x: 1.7556173, y: 2.5, z: -4.681646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3143,7 +3143,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -3167,7 +3167,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
