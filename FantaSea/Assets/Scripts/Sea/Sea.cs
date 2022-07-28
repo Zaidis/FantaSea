@@ -6,13 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class Sea : MonoBehaviour
 {
-
+    public float yPos;
     private MeshFilter mf;
     //public Boat_Base boat;
     [SerializeField] private Transform m_currentTarget;
     private void Awake()
     {
-        m_currentTarget = FindObjectOfType<Boat_Base>().transform;
+       // m_currentTarget = FindObjectOfType<Boat_Base>().transform;
         mf = GetComponent<MeshFilter>();
     }
     
@@ -25,6 +25,6 @@ public class Sea : MonoBehaviour
     }
     void Update()
     {
-        transform.SetPositionAndRotation(new Vector3(m_currentTarget.transform.position.x, 0, m_currentTarget.transform.position.z), this.transform.rotation);
+        transform.SetPositionAndRotation(new Vector3(m_currentTarget.transform.position.x, yPos, m_currentTarget.transform.position.z), this.transform.rotation);
     }
 }

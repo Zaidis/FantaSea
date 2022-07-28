@@ -20,10 +20,17 @@ public class PlayerMovement : Teleporter
     private float groundDistance = 0.4f;
     [SerializeField] private bool isGrounded;
     public LayerMask groundMask;
+
+
+    public List<Interactable> m_nearbyInteractables;
+
     private void Awake() {
         controller = GetComponent<CharacterController>();
+        m_nearbyInteractables = new List<Interactable>();
     }
-
+    private void Start() {
+        
+    }
     private void FixedUpdate() {
         isGrounded = controller.isGrounded;
 
@@ -50,15 +57,32 @@ public class PlayerMovement : Teleporter
     public void Jump(InputAction.CallbackContext context) {
         m_jumped = context.action.triggered;
     }
-    public override void Teleport(Transform oldPortal, Transform newPortal, Vector3 pos, Quaternion rot) {
-        transform.position = pos;
-        transform.rotation = rot;
-        Vector3 newRotation = rot.eulerAngles;
 
-
-        velocity = newPortal.TransformVector(oldPortal.InverseTransformVector(velocity));
-        Physics.SyncTransforms();
+    public void InteractContext(InputAction.CallbackContext context) {
+        if(context.performed) Interact();
     }
+
+    private void Interact() {
+        foreach(Interactable i in m_nearbyInteractables) {
+            i.StartInteraction();
+        }
+    }
+
+    private bool CheckInteractable(Interactable inter) {
+        foreach(Interactable i in m_nearbyInteractables) {
+            if (i == inter) return true;
+        }
+        return false;
+    }
+
+    private void AddInteractable(Interactable inter) {
+        m_nearbyInteractables.Add(inter);
+    }
+    private void RemoveInteractable(Interactable inter) {
+        m_nearbyInteractables.Remove(inter);
+    }
+
+    
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.CompareTag("NPC")) {
@@ -75,14 +99,25 @@ public class PlayerMovement : Teleporter
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("NPC")) {
+        /*if (other.gameObject.CompareTag("NPC")) {
             Debug.Log("I hit an NPC");
             other.gameObject.GetComponent<NPC>().StartInteraction();
+        } */
+        if(other.gameObject.GetComponent<Interactable>() == true) {
+            //if this is an interactable
+            Interactable i = other.gameObject.gameObject.GetComponent<Interactable>();
+            if (!CheckInteractable(i)) AddInteractable(i);
         }
+
     }
     private void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("NPC")) {
+        /*if (other.gameObject.CompareTag("NPC")) {
             other.gameObject.GetComponent<NPC>().StopInteraction();
+        } */
+
+        if (other.gameObject.GetComponent<Interactable>() == true) {
+            //if this is an interactable
+            RemoveInteractable(other.gameObject.GetComponent<Interactable>());
         }
     }
 }

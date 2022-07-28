@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Boat_Base : MonoBehaviour
 {
     public Buoy[] Buoys;
@@ -27,12 +27,17 @@ public class Boat_Base : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void Move(InputAction.CallbackContext context) {
+
+        throttleInput = context.ReadValue<Vector2>().y;
+        steeringInput = context.ReadValue<Vector2>().x;
+
+    }
+
+ 
     // Update is called once per frame
     void Update()
     {
-        throttleInput = Input.GetAxis("Vertical");
-        steeringInput = Input.GetAxis("Horizontal");
-
         if (steeringInput != 0)
         {
             //engine.steeringAngle = -steeringInput * 45;

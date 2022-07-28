@@ -9,6 +9,7 @@ TagManager:
   - River
   - NPC
   - Boat
+  - Dock
   layers:
   - Default
   - TransparentFX
