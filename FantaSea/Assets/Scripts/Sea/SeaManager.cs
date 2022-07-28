@@ -9,21 +9,18 @@ public class SeaManager : MonoBehaviour
 
     public float waveHeight, waveFrequency, waveSpeed;
 
-    public GameObject sea;
+    //the ocean that follows the player
+    public Sea sea;
 
     Material seaMat;
 
     Texture2D displacementMap;
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(this);
-        }
+        if (instance == null) instance = this;
+        else Destroy(this);
+
+        sea = FindObjectOfType<Sea>();
     }
     // Start is called before the first frame update
     void Start()
@@ -33,14 +30,14 @@ public class SeaManager : MonoBehaviour
 
     void setVariables()
     {
-        seaMat = sea.GetComponent<Renderer>().sharedMaterial;
+        seaMat = sea.gameObject.GetComponent<Renderer>().sharedMaterial;
         displacementMap = (Texture2D)seaMat.GetTexture("_waveDisp");
     }
    
 
     public float getWaveHeight(Vector3 position)
     {
-        return sea.transform.position.y + displacementMap.GetPixelBilinear(position.x * waveFrequency, position.z * waveFrequency + Time.time * waveSpeed).g * waveHeight *sea.transform.localScale.x; 
+        return sea.gameObject.transform.position.y + displacementMap.GetPixelBilinear(position.x * waveFrequency, position.z * waveFrequency + Time.time * waveSpeed).g * waveHeight *sea.gameObject.transform.localScale.x; 
     }
 
     private void OnValidate()

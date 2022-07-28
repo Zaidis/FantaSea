@@ -8,6 +8,7 @@ TagManager:
   - Pickup
   - River
   - NPC
+  - Boat
   layers:
   - Default
   - TransparentFX

@@ -8,20 +8,23 @@ public class Sea : MonoBehaviour
 {
 
     private MeshFilter mf;
-    public Boat_Base boat;
+    //public Boat_Base boat;
+    [SerializeField] private Transform m_currentTarget;
     private void Awake()
     {
+        m_currentTarget = FindObjectOfType<Boat_Base>().transform;
         mf = GetComponent<MeshFilter>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    
+    /// <summary>
+    /// Changes target for the ocean to follow. 
+    /// </summary>
+    /// <param name="obj"></param>
+    public void ChangeTarget(GameObject obj) {
+        m_currentTarget = obj.transform;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.SetPositionAndRotation(new Vector3(boat.transform.position.x, 0, boat.transform.position.z), this.transform.rotation);
+        transform.SetPositionAndRotation(new Vector3(m_currentTarget.transform.position.x, 0, m_currentTarget.transform.position.z), this.transform.rotation);
     }
 }

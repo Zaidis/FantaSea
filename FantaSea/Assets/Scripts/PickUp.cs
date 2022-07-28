@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PickUp : MonoBehaviour
 {
 
@@ -12,7 +12,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float force; //how much force / how hard you throw objects
     public List<GameObject> objects = new List<GameObject>();
     public Transform handLocation;
-    private void Update() {
+    /*private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             //left click
             if (!isHolding) {
@@ -61,8 +61,64 @@ public class PickUp : MonoBehaviour
                 isHolding = false;
             }
         }
+    } */
+
+    public void LeftClickContext(InputAction.CallbackContext context) {
+        LeftClickAction();
+    }
+    public void RightClickContext(InputAction.CallbackContext context) {
+        RightClickAction();
     }
 
 
+    private void LeftClickAction() {
+        //left click
+        if (!isHolding) {
+            //if you are NOT holding anything
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
+            if (Physics.Raycast(ray, out hit, maxDistance)) {
+                if (hit.collider.gameObject.CompareTag("Pickup")) {
+                    GameObject obj = hit.collider.gameObject;
+                    objects.Add(obj);
+                    obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    obj.GetComponent<Rigidbody>().useGravity = false;
+                    obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                    obj.GetComponent<Collider>().enabled = false;
+                    obj.transform.parent = handLocation;
+                    obj.GetComponent<Rigidbody>().drag = 100;
+                    obj.transform.localPosition = Vector3.zero;
+
+                    isHolding = true;
+                }
+            }
+        }
+        else {
+            //you are holding something. so you drop it
+            GameObject obj = objects[0].gameObject;
+            obj.GetComponent<Rigidbody>().useGravity = true;
+            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            obj.GetComponent<Rigidbody>().drag = 0;
+            obj.GetComponent<Collider>().enabled = true;
+            obj.transform.parent = null;
+            objects.Clear();
+            isHolding = false;
+        }
+    }
+        
+    private void RightClickAction() {
+        if (isHolding) {
+            GameObject obj = objects[0].gameObject;
+            obj.GetComponent<Rigidbody>().useGravity = true;
+            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            obj.GetComponent<Collider>().enabled = true;
+            obj.GetComponent<Rigidbody>().drag = 0;
+            obj.GetComponent<Rigidbody>().AddForce(handLocation.transform.forward * force, ForceMode.Impulse);
+
+            obj.transform.parent = null;
+            objects.Clear();
+            isHolding = false;
+        }
+    }
 }

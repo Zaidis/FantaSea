@@ -19,7 +19,7 @@ public class Pedistal : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) {
             if (manager.CheckIfDone()) {
                 PlayerMovement player = FindObjectOfType<PlayerMovement>();
-                player.canMove = false;
+                player.m_canMove = false;
                 player.gameObject.transform.position = placement.position;
                 StartMilkEvent();
             }

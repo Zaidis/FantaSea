@@ -171,6 +171,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4461900078451913246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542841603018510197}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6065717, y: 0.6794797, z: 0.46933335}
+  m_Center: {x: -0.26662856, y: 0.06308277, z: -0.000000014901163}
+--- !u!64 &4461900078451913250
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542841603018510197}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7387706064836869012, guid: 88a8abffe30a1aa4bb8294806117b15d, type: 3}
 --- !u!1 &3542841603324369074
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,33 +350,6 @@ MonoBehaviour:
   underwaterDrag: 0
   underwaterAngularDrag: 0
   waveHeight: 0
---- !u!64 &4461900078451913250
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542841603018510197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7387706064836869012, guid: 88a8abffe30a1aa4bb8294806117b15d, type: 3}
---- !u!65 &4461900078451913246
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542841603018510197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6065717, y: 0.6794797, z: 0.46933335}
-  m_Center: {x: -0.26662856, y: 0.06308277, z: -0.000000014901163}
 --- !u!1 &4461900078477820367
 GameObject:
   m_ObjectHideFlags: 3
@@ -458,7 +458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900078582734155}
-  m_LocalRotation: {x: 0.20860995, y: -0.1743687, z: 0.03782822, w: 0.9615854}
+  m_LocalRotation: {x: 0.20860995, y: -0.1743687, z: 0.03782821, w: 0.9615854}
   m_LocalPosition: {x: 1.7556173, y: 2.5, z: -4.681646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -515,7 +515,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900078582734155}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4461900078582734150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,7 +1448,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900079461998456}
-  m_LocalRotation: {x: 0.1911311, y: -0.17502625, z: 0.03465868, w: 0.96521163}
+  m_LocalRotation: {x: 0.19113107, y: -0.17502627, z: 0.034658685, w: 0.96521163}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
