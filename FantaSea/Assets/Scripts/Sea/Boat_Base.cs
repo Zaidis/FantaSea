@@ -12,6 +12,7 @@ public class Boat_Base : MonoBehaviour
 
     [Header("General Specs")]
     public string boatName;
+    public List<Interactable> m_nearbyInteractables;
 
     // Start is called before the first frame update
     private void Awake()
@@ -61,5 +62,51 @@ public class Boat_Base : MonoBehaviour
             rb.AddForceAtPosition(Buoys[0].transform.forward * (throttleInput * speed) / 2, Buoys[0].transform.position, ForceMode.Acceleration);
         }
 
+    }
+
+    public void InteractContext(InputAction.CallbackContext context) {
+        if (context.performed) Interact();
+    }
+
+    private void Interact() {
+        foreach (Interactable i in m_nearbyInteractables) {
+            i.StartInteraction();
+        }
+    }
+
+    private bool CheckInteractable(Interactable inter) {
+        foreach (Interactable i in m_nearbyInteractables) {
+            if (i == inter) return true;
+        }
+        return false;
+    }
+    private void AddInteractable(Interactable inter) {
+        m_nearbyInteractables.Add(inter);
+    }
+    private void RemoveInteractable(Interactable inter) {
+        m_nearbyInteractables.Remove(inter);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        /*if (other.gameObject.CompareTag("NPC")) {
+            Debug.Log("I hit an NPC");
+            other.gameObject.GetComponent<NPC>().StartInteraction();
+        } */
+        if (other.gameObject.GetComponent<Interactable>() == true) {
+            //if this is an interactable
+            Interactable i = other.gameObject.gameObject.GetComponent<Interactable>();
+            if (!CheckInteractable(i)) AddInteractable(i);
+        }
+
+    }
+    private void OnTriggerExit(Collider other) {
+        /*if (other.gameObject.CompareTag("NPC")) {
+            other.gameObject.GetComponent<NPC>().StopInteraction();
+        } */
+
+        if (other.gameObject.GetComponent<Interactable>() == true) {
+            //if this is an interactable
+            RemoveInteractable(other.gameObject.GetComponent<Interactable>());
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     public Queue<string> sentences;
@@ -12,10 +13,28 @@ public class DialogueManager : MonoBehaviour
     public bool isInteracting; //is a player nearby to talk to
     public bool typing;
     private int totalVisibleCharacters;
+    private NPC currentNPC;
     private void Start() {
         sentences = new Queue<string>();
     }
-    public void StartDialogue(Dialogue dialogue) {
+    public void StartDialogue(Dialogue dialogue, NPC n) {
+        /*
+         * HOW THIS WORKS...
+         * First, we destroy the player object. 
+         * Next, we turn on this NPC's camera.
+         * The Dialogue Manager has access to its own player input. The reasoning is that it needs
+         * to hold onto the controls for the dialogue. its easier to just destroy the player
+         * and re-instantiate it later. 
+         */
+        currentNPC = n;
+        SeaManager.instance.sea.ChangeTarget(n.gameObject);
+        Destroy(FindObjectOfType<PlayerMovement>().gameObject);
+        
+
+        currentNPC.TurnOnCamera();
+
+        this.GetComponent<PlayerInput>().enabled = true;
+
         this.name = dialogue.name;
         sentences.Clear();
         foreach(string sentence in dialogue.lines) {
@@ -24,7 +43,16 @@ public class DialogueManager : MonoBehaviour
         DisplaySentence();
     }
 
-    private void Update() {
+   
+    public void ProceedContext(InputAction.CallbackContext context) {
+        if(context.performed)DisplaySentence();
+    }
+
+    public void ExitContext(InputAction.CallbackContext context) {
+        if (context.performed) EndDialogue();
+    }
+
+    /*private void Update() {
         if (isInteracting) {
             if (Input.GetKeyDown(KeyCode.E)) {
                 if(!typing)
@@ -36,7 +64,7 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void DisplaySentence() {
         if(sentences.Count == 0) {
@@ -55,6 +83,11 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndDialogue() {
+        this.GetComponent<PlayerInput>().enabled = false;
+
+        GameManager.instance.SpawnPlayer(currentNPC.m_playerSpawn, currentNPC.gameObject.transform);
+
+        currentNPC.TurnOffCamera();
         textUI.text = "";
         nameText.text = "";
         interactText.text = "";

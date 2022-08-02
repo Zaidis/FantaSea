@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     };
 
     public CurrentSetting mySetting;
+
+
     private void Awake() {
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
@@ -23,10 +25,15 @@ public class GameManager : MonoBehaviour
         mySetting = CurrentSetting.human;
     }
 
-    public void SwitchCharacters(Transform p , Transform b) {
+    public void SpawnPlayer(Transform pos, Transform look) {
+        PlayerMovement player = Instantiate(m_player, pos.position, Quaternion.identity);
+        player.gameObject.transform.LookAt(look);
+    }
+    public void SwitchCharacters(Transform p , Transform b, Dock d) {
         if (mySetting == CurrentSetting.boat) {
             PlayerMovement player = Instantiate(m_player, p.position, Quaternion.identity);
-            Destroy(FindObjectOfType<Boat_Base>().gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("Boat"));
+            d.TurnOnStaticBoat();
             mySetting = CurrentSetting.human;
 
             SeaManager.instance.sea.ChangeTarget(player.gameObject);
@@ -36,7 +43,7 @@ public class GameManager : MonoBehaviour
             Boat_Base player = Instantiate(m_boat, b.position, Quaternion.identity);
             Destroy(FindObjectOfType<PlayerMovement>().gameObject);
             mySetting = CurrentSetting.boat;
-
+            d.TurnOffStaticBoat();
             SeaManager.instance.sea.ChangeTarget(player.gameObject);
         }
 

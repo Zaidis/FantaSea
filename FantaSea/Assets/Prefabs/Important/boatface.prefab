@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 5080317976239620724}
   m_Layer: 0
   m_Name: boatface
-  m_TagString: Untagged
+  m_TagString: Boat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +227,7 @@ Transform:
   m_GameObject: {fileID: 3542841603324369074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.75, y: 1.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7031456319477782828}
   - {fileID: 378400028924492878}
@@ -294,10 +294,11 @@ MonoBehaviour:
   rb: {fileID: 4461900079074419850}
   throttleInput: 0
   steeringInput: 0
-  speed: 25
+  speed: 50
   maxSteerAngle: 1
   sm: {fileID: 0}
   boatName: 
+  m_nearbyInteractables: []
 --- !u!114 &5080317976239620724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +376,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1f355763-fa4a-4736-866b-82685b754ab4
     m_ActionName: Boat/Camera_Z_Movement[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4461900079074419851}
+        m_TargetAssemblyTypeName: Boat_Base, Assembly-CSharp
+        m_MethodName: InteractContext
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7e2f0220-5a50-4b93-8f64-a8d4057824b2
+    m_ActionName: Boat/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Boat
@@ -457,7 +474,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900078477820367}
-  m_LocalRotation: {x: 0.52777743, y: -0.17438272, z: 0.11172762, w: 0.82374674}
+  m_LocalRotation: {x: 0.52777743, y: -0.17438272, z: 0.111727625, w: 0.82374674}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -541,7 +558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900078582734155}
-  m_LocalRotation: {x: 0.54267365, y: -0.17232156, z: 0.11488103, w: 0.8140104}
+  m_LocalRotation: {x: 0.54267365, y: -0.1723216, z: 0.114881076, w: 0.81401044}
   m_LocalPosition: {x: 1.0130725, y: 6, z: -2.285538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1161,7 +1178,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461900078813308911}
-  m_LocalRotation: {x: 0.54267365, y: -0.17232156, z: 0.114881024, w: 0.81401044}
+  m_LocalRotation: {x: 0.5426736, y: -0.17232162, z: 0.11488108, w: 0.81401044}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
